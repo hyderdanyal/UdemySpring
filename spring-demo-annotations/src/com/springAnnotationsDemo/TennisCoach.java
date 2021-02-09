@@ -1,11 +1,16 @@
 package com.springAnnotationsDemo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 //@Component("thatSillyCoach")
 @Component
+@Scope("singleton")
 public class TennisCoach implements Coach {
 	
 	//Field Injection
@@ -26,6 +31,7 @@ public class TennisCoach implements Coach {
 		System.out.println("\n TennisCoach: Inside default constructor");
 	}
 	
+	
 	/*
 	//Any method can be turned to Dependency
 	@Autowired
@@ -44,6 +50,17 @@ public class TennisCoach implements Coach {
 	}
 	*/
 	
+	//define my init method
+	@PostConstruct
+	public void doMyStartupStuff() {
+		System.out.println("\n TennisCoach: Inside doMyStartupStuff() ");
+	}
+	
+	//define my destroy method
+	@PreDestroy
+	public void doMyCleanupStuff() {
+		System.out.println("\n TennisCoach: Inside doMyCleanupStuff() ");
+	}
 	
 	@Override
 	public String getDailyWorkout() {
