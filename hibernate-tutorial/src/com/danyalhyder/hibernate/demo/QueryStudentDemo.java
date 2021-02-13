@@ -62,6 +62,7 @@ public class QueryStudentDemo {
 			
 		}
 		finally {
+			session.close();
 			factory.close();
 		}
 

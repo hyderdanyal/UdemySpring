@@ -39,6 +39,7 @@ public class CreateStudentDemo {
 			
 		}
 		finally {
+			session.close();
 			factory.close();
 		}
 
