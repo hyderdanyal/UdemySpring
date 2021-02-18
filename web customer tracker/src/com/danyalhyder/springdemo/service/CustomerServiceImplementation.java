@@ -26,4 +26,18 @@ public class CustomerServiceImplementation implements CustomerService {
 		return customerDAO.getCustomers();
 	}
 
+	@Override
+	@Transactional
+	public void saveCustomer(Customer theCustomer) {
+		
+		customerDAO.saveCustomer(theCustomer);
+	}
+
+	@Override
+	@Transactional
+	public Customer getCustomer(int theId) {
+		// TODO Auto-generated method stub
+		return customerDAO.getCustomer(theId);
+	}
+
 }
