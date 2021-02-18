@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.danyalhyder.springdemo.dao.CustomerDAO;
 import com.danyalhyder.springdemo.entity.Customer;
 import com.danyalhyder.springdemo.service.CustomerService;
+import com.danyalhyder.springdemo.util.SortUtils;
 
 
 @Controller
@@ -29,21 +29,21 @@ public class CustomerController {
 	private CustomerService customerService;
 	
 	
-	@GetMapping("/list")
-	public String listCustomer(Model theModel) {
-		
-//		//Get the customers from the dao
-//		List<Customer> theCustomers = customerDAO.getCustomers();
-		
-		//Get the customers from the service layer
-		List<Customer> theCustomers = customerService.getCustomers();
-		
-		//Add them to spring mvc
-		theModel.addAttribute("customers",theCustomers);
-		
-		
-		return "list-customers"; 
-	}
+//	@GetMapping("/list")
+//	public String listCustomer(Model theModel) {
+//		
+////		//Get the customers from the dao
+////		List<Customer> theCustomers = customerDAO.getCustomers();
+//		
+//		//Get the customers from the service layer
+//		List<Customer> theCustomers = customerService.getCustomers();
+//		
+//		//Add them to spring mvc
+//		theModel.addAttribute("customers",theCustomers);
+//		
+//		
+//		return "list-customers"; 
+//	}
 	
 	@GetMapping("/showFormForAdd")
 	public String showFormForAdd(Model theModel) {
@@ -95,5 +95,27 @@ public class CustomerController {
 
 	        return "list-customers";        
 	    }
+	 
+	 @GetMapping("/list")
+		public String listCustomers(Model theModel, @RequestParam(required=false) String sort) {
+			
+			// get customers from the service
+			List<Customer> theCustomers = null;
+			
+			// check for sort field
+			if (sort != null) {
+				int theSortField = Integer.parseInt(sort);
+				theCustomers = customerService.getCustomers(theSortField);			
+			}
+			else {
+				// no sort field provided ... default to sorting by last name
+				theCustomers = customerService.getCustomers(SortUtils.LAST_NAME);
+			}
+			
+			// add the customers to the model
+			theModel.addAttribute("customers", theCustomers);
+			
+			return "list-customers";
+		}
 	
 }
