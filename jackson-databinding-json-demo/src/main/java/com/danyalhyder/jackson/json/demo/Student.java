@@ -1,5 +1,8 @@
 package com.danyalhyder.jackson.json.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown=true)
 public class Student {
 
 
@@ -7,6 +10,14 @@ public class Student {
 	private String firstName;
 	private String lastName;
 	private boolean active;
+	
+	private Address address;
+	
+	private String[] languages;
+	
+	public Student() {
+		
+	}
 	
 	
 	public int getId() {
@@ -49,9 +60,25 @@ public class Student {
 	}
 
 
-	public Student() {
-		
+	public Address getAddress() {
+		return address;
 	}
+
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+
+	public String[] getLanguages() {
+		return languages;
+	}
+
+
+	public void setLanguages(String[] languages) {
+		this.languages = languages;
+	}
+		
 	
 	
 
