@@ -1,10 +1,10 @@
-package com.luv2code.springdemo.service;
+package com.danyalhyder.springdemo.dao;
 
 import java.util.List;
 
-import com.luv2code.springdemo.entity.Customer;
+import com.danyalhyder.springdemo.entity.Customer;
 
-public interface CustomerService {
+public interface CustomerDAO {
 
 	public List<Customer> getCustomers();
 
