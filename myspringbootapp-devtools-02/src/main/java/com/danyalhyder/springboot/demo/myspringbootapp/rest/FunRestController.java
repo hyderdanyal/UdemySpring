@@ -15,5 +15,19 @@ public class FunRestController {
 		
 		return "Hello World! Time on server is " +LocalDateTime.now();
 	}
+	
+	//Expose a new endpoint for "workout" to check if automatically reloads
+	@GetMapping("/workout")
+	public String getDailyWorkout() {
+		
+		return "Run a hard 5km";
+	}
+	
+	//Another check
+	@GetMapping("/fortune")
+	public String getDailyFortune() {
+		
+		return "Today is your lucky day!!";
+	}
 
 }
